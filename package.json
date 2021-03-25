@@ -1,6 +1,6 @@
 {
   "name": "react-collapsible-paragraph",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "A collapsible paragraph component for reactjs projects",
   "keywords": [
     "react",
@@ -19,7 +19,7 @@
     "react-dom": "^17.0.2"
   },
   "scripts": {
-    "build": "rollup -c && cp package.json dist/",
+    "build": "rollup -c && cp package.json dist/ && cp README.md dist/ && cp LICENSE dist/",
     "start": "rollup -c -w"
   },
   "devDependencies": {
