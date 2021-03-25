@@ -1,0 +1,34 @@
+{
+  "name": "react-collapsible-paragraph",
+  "version": "1.0.0",
+  "description": "A collapsible paragraph component for reactjs projects",
+  "main": "dist/index.js",
+  "repository": "https://github.com/cyphernull/react-collapsible-paragraph",
+  "author": "cyphernull <eric.choo1997@yahoo.com>",
+  "license": "MIT",
+  "private": false,
+  "types": "index.d.ts",
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "start": "rollup -c -w"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "@types/react-dom": "^17.0.3",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^2.42.4",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "typescript": "^4.2.3"
+  },
+  "files": [
+    "dist"
+  ]
+}

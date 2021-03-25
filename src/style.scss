@@ -1,0 +1,24 @@
+$blue: #1a73e8;
+
+$light_blue: #4694fa;
+
+$dark_blue: #155fbf;
+
+.react-foldable-paragraph-v-1-0-0 {
+  all: unset !important;
+  width: 100%;
+}
+
+.react-foldable-paragraph-v-1-0-0-handler {
+  float: right;
+  cursor: pointer;
+  color: $blue;
+}
+
+.react-foldable-paragraph-v-1-0-0-handler:hover {
+  color: $light_blue;
+}
+
+.react-foldable-paragraph-v-1-0-0-handler:active {
+  color: $dark_blue;
+}
