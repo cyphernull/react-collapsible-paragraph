@@ -1,7 +1,13 @@
 {
   "name": "react-collapsible-paragraph",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collapsible paragraph component for reactjs projects",
+  "keywords": [
+    "react",
+    "components",
+    "collapsible",
+    "layout"
+  ],
   "main": "dist/index.js",
   "repository": "https://github.com/cyphernull/react-collapsible-paragraph",
   "author": "cyphernull <eric.choo1997@yahoo.com>",
