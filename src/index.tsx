@@ -104,7 +104,6 @@ const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
             getNumberFromPixel(paddingRight),
           lineHeightNumber,
         );
-        console.log(computed);
 
         setShowHandler(computed.computed);
         if (!isExpand) {
