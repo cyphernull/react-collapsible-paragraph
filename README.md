@@ -44,3 +44,5 @@ function App() {
 | --------- | :----------------------------------- | :-------------------------------------------------------------------------------- | :----------------------------------------- |
 | `lines`   | `number`                             | If the content is longer than a certain line number. The content can be collapsed | 2                                          |
 | `locales` | `{expand: string; collapse: string}` | Locale for _expan/collapse_ handler based on controlled usage                     | `{expand: "expand", collapse: "collapse"}` |
+
+## [Demo](https://codesandbox.io/s/demo-react-collapsible-paragraph-ifh1y)
