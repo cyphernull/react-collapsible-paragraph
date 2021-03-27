@@ -2,7 +2,7 @@
 
 A Collapsible Paragraph Component for Reactjs
 
-## Current Status
+## Current works
 
 Customizable _expan/collapse_ handler
 
