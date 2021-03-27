@@ -12,6 +12,7 @@ export interface CollapsibleParagraphProps {
   lines: number;
   expand?: boolean;
   locales?: Locale;
+  handlerClassName?: string;
 }
 
 const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
@@ -19,6 +20,7 @@ const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
   children,
   locales,
   expand,
+  handlerClassName,
 }) => {
   const lastWidth = useRef<number>();
   const originalText = useRef<string>();
@@ -31,14 +33,19 @@ const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
   const [isExpand, setIsExpand] = useState<boolean>(false);
 
   const getComputedText = useCallback(
-    (originText: string, maxWidth: number, lineHeight: number) => {
+    (
+      originText: string,
+      maxWidth: number,
+      lineHeight: number,
+      css: CSSStyleDeclaration,
+    ) => {
       return compute(
         originText,
         maxWidth,
         lineHeight * lines,
-        lineHeight,
         locales!,
         typeof expand === "boolean",
+        css,
       );
     },
     [lines, locales, expand],
@@ -66,9 +73,10 @@ const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
       paragraph.current.parentElement &&
       originalText.current
     ) {
-      let { lineHeight, paddingLeft, paddingRight } = window.getComputedStyle(
+      const parentStyle = window.getComputedStyle(
         paragraph.current.parentElement,
       );
+      let { lineHeight, paddingLeft, paddingRight } = parentStyle;
 
       let lineHeightNumber: number;
 
@@ -103,6 +111,7 @@ const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
             getNumberFromPixel(paddingLeft) -
             getNumberFromPixel(paddingRight),
           lineHeightNumber,
+          parentStyle,
         );
 
         setShowHandler(computed.computed);
@@ -125,9 +134,11 @@ const CollapsibleParagraph: FC<CollapsibleParagraphProps> = ({
   return (
     <p ref={paragraph} className="react-foldable-paragraph-v-1-0-0">
       {text}
-      {showHandler && (
+      {showHandler && typeof expand === "undefined" && (
         <span
-          className="react-foldable-paragraph-v-1-0-0-handler"
+          className={`react-foldable-paragraph-v-1-0-0-handler ${
+            handlerClassName || ""
+          }`}
           onClick={toggleExpand}
         >
           {isExpand ? locales?.collapse : locales?.expand}
