@@ -2,6 +2,8 @@
 
 A Collapsible Paragraph Component for Reactjs
 
+![npm](https://img.shields.io/npm/dw/react-collapsible-paragraph) ![NPM](https://img.shields.io/npm/l/react-collapsible-paragraph) ![npm type definitions](https://img.shields.io/npm/types/react-collapsible-paragraph)
+
 ## Current works
 
 Customizable _expan/collapse_ handler
