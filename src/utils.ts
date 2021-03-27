@@ -6,7 +6,7 @@ const eleId = "collapsible-paragraph-helper";
 
 function getDummyContainer() {
   let dummyContainer: HTMLDivElement;
-  return function (width: number, lineHeight: number) {
+  return function (width: number, css: CSSStyleDeclaration) {
     if (!dummyContainer) {
       dummyContainer = document.createElement("div");
       dummyContainer.setAttribute("aria-hidden", "true");
@@ -15,7 +15,6 @@ function getDummyContainer() {
       dummyContainer.style.left = "0";
       dummyContainer.style.width = `${width}px`;
       dummyContainer.style.height = "auto";
-      dummyContainer.style.lineHeight = `${lineHeight}px`;
       dummyContainer.style.minHeight = "auto";
       dummyContainer.style.maxHeight = "auto";
       dummyContainer.style.top = "-999999px";
@@ -23,6 +22,9 @@ function getDummyContainer() {
       dummyContainer.style.textOverflow = "clip";
       dummyContainer.style.whiteSpace = "pre-wrap";
       dummyContainer.style.wordBreak = "break-word";
+      dummyContainer.style.fontSize = css.fontSize;
+      dummyContainer.style.fontFamily = css.fontFamily;
+      dummyContainer.style.lineHeight = css.lineHeight;
       document.body.appendChild(dummyContainer);
     }
     if (dummyContainer.style.width !== `${width}px`) {
@@ -32,11 +34,11 @@ function getDummyContainer() {
   };
 }
 
-function generateHandlers(lineHeight: number, locales: Locale) {
+function generateHandlers(css: CSSStyleDeclaration, locales: Locale) {
   const button = document.createElement("span");
   button.style.display = "inline-block";
-  button.style.lineHeight = `${lineHeight}px`;
-  button.style.height = `${lineHeight}px`;
+  button.style.lineHeight = css.lineHeight;
+  button.style.height = css.lineHeight;
   button.style.marginLeft = "4px";
   const label = document.createTextNode(locales.expand);
   button.appendChild(label);
@@ -51,11 +53,11 @@ export function compute(
   originText: string,
   maxWidth: number,
   maxHeight: number,
-  lineHeight: number,
   locales: Locale,
   controlled: boolean,
+  css: CSSStyleDeclaration,
 ) {
-  const dummyContainer = getDummyContainer()(maxWidth, lineHeight);
+  const dummyContainer = getDummyContainer()(maxWidth, css);
   const textNode = document.createTextNode(originText);
   dummyContainer.appendChild(textNode);
   if (dummyContainer.offsetHeight <= maxHeight) {
@@ -65,7 +67,7 @@ export function compute(
   originText += Ellipsis;
 
   if (!controlled) {
-    dummyContainer.appendChild(generateHandlers(lineHeight, locales));
+    dummyContainer.appendChild(generateHandlers(css, locales));
   }
 
   let start = 0;
