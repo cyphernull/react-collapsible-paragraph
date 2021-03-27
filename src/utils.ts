@@ -11,6 +11,9 @@ function getDummyContainer() {
       dummyContainer = document.createElement("div");
       dummyContainer.setAttribute("aria-hidden", "true");
       dummyContainer.id = eleId;
+      Object.entries(dummyContainer.style).forEach(([key, _value]) => {
+        dummyContainer.style[key] = css[key];
+      });
       dummyContainer.style.position = "fixed";
       dummyContainer.style.left = "0";
       dummyContainer.style.width = `${width}px`;
@@ -22,9 +25,6 @@ function getDummyContainer() {
       dummyContainer.style.textOverflow = "clip";
       dummyContainer.style.whiteSpace = "pre-wrap";
       dummyContainer.style.wordBreak = "break-word";
-      dummyContainer.style.fontSize = css.fontSize;
-      dummyContainer.style.fontFamily = css.fontFamily;
-      dummyContainer.style.lineHeight = css.lineHeight;
       document.body.appendChild(dummyContainer);
     }
     if (dummyContainer.style.width !== `${width}px`) {
@@ -34,11 +34,9 @@ function getDummyContainer() {
   };
 }
 
-function generateHandlers(css: CSSStyleDeclaration, locales: Locale) {
+function generateHandlers(locales: Locale) {
   const button = document.createElement("span");
   button.style.display = "inline-block";
-  button.style.lineHeight = css.lineHeight;
-  button.style.height = css.lineHeight;
   button.style.marginLeft = "4px";
   const label = document.createTextNode(locales.expand);
   button.appendChild(label);
@@ -67,7 +65,7 @@ export function compute(
   originText += Ellipsis;
 
   if (!controlled) {
-    dummyContainer.appendChild(generateHandlers(css, locales));
+    dummyContainer.appendChild(generateHandlers(locales));
   }
 
   let start = 0;
