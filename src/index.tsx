@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
+import { compute, getNumberFromPixel } from "./utils";
 
 import "./style.scss";
-import { compute, getNumberFromPixel } from "./utils";
 
 export type Locale = {
   expand: string;
